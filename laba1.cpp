@@ -1,11 +1,13 @@
 ﻿
 
 #include <iostream>
+
 using namespace std;
 //Лабораторная работа 4
 int main()
 {
 	setlocale(LC_ALL, "Russian");
+	int summod = 0;
 	int minus=0;
 	int numbers[5]{ -5,-2,0,7,10 };
 	//Вывод массива
@@ -31,9 +33,23 @@ int main()
 	}
 	//сумма модулей элемента массива расположеннхы после минимального
 	//по модулю элемента
+	cout << endl;
 	for (int i = 0; i < size(numbers); i++)
 	{
-		cout << abs(numbers[i]) << ",";
+		// abs(numbers[i]);
+		if (abs(numbers[i])+1<abs(numbers[i]))
+		{
+			swap(numbers[i] ,numbers[i+1]);
+		}
+		cout << abs(numbers[i]);
+
+		
+
+
+
+		
+		
 	}
+	cout <<endl<< "Сумма модулей элементов: " << summod;
 }
 
