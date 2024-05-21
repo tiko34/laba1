@@ -36,12 +36,12 @@ int main()
 	cout << endl;
 	for (int i = 0; i < size(numbers); i++)
 	{
-		// abs(numbers[i]);
+		
 		if (abs(numbers[i])+1<abs(numbers[i]))
 		{
 			swap(numbers[i] ,numbers[i+1]);
 		}
-		cout << abs(numbers[i]);
+		cout << abs(numbers[i])<<",";
 
 		
 
