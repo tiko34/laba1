@@ -8,28 +8,28 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int summod = 0;
-	int minus=0;
+	int minus = 0;
 	int numbers[5]{ -5,2,0,-2,10 };
 	//Вывод массива
 	cout << "Массив:";
-	for (int i = 0; i<size(numbers); i++)
+	for (int i = 0; i < size(numbers); i++)
 	{
-		cout << numbers[i]<<",";
+		cout << numbers[i] << " ";
 	}
 	//Вычисление количества отрицательных чисел
 	for (int i = 0; i < size(numbers); i++)
 	{
-		if ( 0<numbers[i])
+		if (0 < numbers[i])
 		{
-		 minus++;
+			minus++;
 		}
-	} 
+	}
 	cout << endl << "Количество отрицательных значений в массиве:" << minus;
 	//Найти сумму модулей элементов массива, расположенных после минимального по модулю элемента.
-	cout <<endl<< "Элементы массива по модулю: ";
+	cout << endl << "Элементы массива по модулю: ";
 	for (int i = 0; i < size(numbers); i++)
 	{
-		cout <<" "<< abs(numbers[i]);
+		cout << " " << abs(numbers[i]);
 	}
 	//переменная с которой сравниваем все числа в массиве
 	int minelement = abs(numbers[0]);
@@ -38,14 +38,14 @@ int main()
 	{
 		//если число из массива по модулю меньше чем mielement
 		//тогда minelement будет равен индексу этого числа в массиве
-		if (abs(numbers[i])<minelement)
+		if (abs(numbers[i]) < minelement)
 		{
 			minelement = i;
 
 		}
 	}
 	//Рассчет суммы модулей элементов после минимального числа в модуле
-	for (int i=minelement+1; i < size(numbers); i++)
+	for (int i = minelement + 1; i < size(numbers); i++)
 	{
 		summod += abs(numbers[i]);
 	}
@@ -59,11 +59,11 @@ int main()
 		{
 			numbers[i] = numbers[i] * numbers[i];
 		}
-	//	cout << numbers[i] << " "; // выводим элементы массива
+		//	cout << numbers[i] << " "; // выводим элементы массива
 	}
 
 	for (int i = 0; i < size(numbers); i++) {
-		for (int j = 0; j < size(numbers)-1; j++) {
+		for (int j = 0; j < size(numbers) - 1; j++) {
 			if (numbers[j] > numbers[j + 1]) {
 				int b = numbers[j]; // создали дополнительную переменную
 				numbers[j] = numbers[j + 1]; // меняем местами
@@ -73,15 +73,9 @@ int main()
 	}
 	//Вывод готовокго массива
 	cout << "Массив в отсортированном виде и возведением в степень отрицательных чисел: ";
-	for (int i = 0; i < size(numbers); i++) 
+	for (int i = 0; i < size(numbers); i++)
 	{
 		cout << numbers[i] << " ";
 	}
-
-	
-	
-
-
-
 }
 
