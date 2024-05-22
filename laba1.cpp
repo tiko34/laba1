@@ -34,21 +34,22 @@ int main()
 	//сумма модулей элемента массива расположеннхы после минимального
 	//по модулю элемента
 	cout << endl;
+	//переменная с которой сравниваем все числа в массиве
+	int minelement = abs(numbers[0]);
 	for (int i = 0; i < size(numbers); i++)
 	{
-		
-		if (abs(numbers[i])+1<abs(numbers[i]))
+		//если число из массива по модулю меньше чем mielement
+		//тогда minelement будет равен индексу этого числа в массиве
+		if (abs(numbers[i])<minelement)
 		{
-			swap(numbers[i] ,numbers[i+1]);
+			minelement = i;
+
 		}
-		cout << abs(numbers[i])<<",";
-
-		
-
-
-
-		
-		
+	}
+	//Рассчет суммы модулей элементов после минимального числа в модуле
+	for (int i=minelement+1; i < size(numbers); i++)
+	{
+		summod += abs(numbers[i]);
 	}
 	cout <<endl<< "Сумма модулей элементов: " << summod;
 }
