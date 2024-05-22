@@ -9,7 +9,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	int summod = 0;
 	int minus=0;
-	int numbers[5]{ -5,-2,0,7,10 };
+	int numbers[5]{ -5,2,0,-2,10 };
 	//Вывод массива
 	cout << "Массив:";
 	for (int i = 0; i<size(numbers); i++)
@@ -29,7 +29,7 @@ int main()
 	cout <<endl<< "Элементы массива по модулю: ";
 	for (int i = 0; i < size(numbers); i++)
 	{
-		cout <<","<< abs(numbers[i]);
+		cout <<" "<< abs(numbers[i]);
 	}
 	//переменная с которой сравниваем все числа в массиве
 	int minelement = abs(numbers[0]);
@@ -49,6 +49,39 @@ int main()
 	{
 		summod += abs(numbers[i]);
 	}
-	cout <<endl<< "Сумма модулей элементов: " << summod;
+	cout << endl << "Сумма модулей элементов: " << summod << endl;
+
+	//Заменить все отрицательные элементы массива их квадратами 
+//и упорядочить элементы массива по возрастанию.
+//сортировка пузырьком
+	for (int i = 0; i < size(numbers); i++) {
+		if (numbers[i] < 0)
+		{
+			numbers[i] = numbers[i] * numbers[i];
+		}
+	//	cout << numbers[i] << " "; // выводим элементы массива
+	}
+
+	for (int i = 0; i < size(numbers); i++) {
+		for (int j = 0; j < size(numbers)-1; j++) {
+			if (numbers[j] > numbers[j + 1]) {
+				int b = numbers[j]; // создали дополнительную переменную
+				numbers[j] = numbers[j + 1]; // меняем местами
+				numbers[j + 1] = b; // значения элементов
+			}
+		}
+	}
+	//Вывод готовокго массива
+	cout << "Массив в отсортированном виде и возведением в степень отрицательных чисел: ";
+	for (int i = 0; i < size(numbers); i++) 
+	{
+		cout << numbers[i] << " ";
+	}
+
+	
+	
+
+
+
 }
 
