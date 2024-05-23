@@ -65,9 +65,9 @@ int main()
 	for (int i = 0; i < size(numbers); i++) {
 		for (int j = 0; j < size(numbers) - 1; j++) {
 			if (numbers[j] > numbers[j + 1]) {
-				int b = numbers[j]; // создали дополнительную переменную
-				numbers[j] = numbers[j + 1]; // меняем местами
-				numbers[j + 1] = b; // значения элементов
+				int b = numbers[j]; 
+				numbers[j] = numbers[j + 1];
+				numbers[j + 1] = b; 
 			}
 		}
 	}
