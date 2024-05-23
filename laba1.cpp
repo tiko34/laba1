@@ -2,9 +2,13 @@
 //
 
 #include <iostream>
-
+//Лаборатораня работа 5
 int main()
 {
-    std::cout << "Hello World!\n";
+	int numbers[]
+	{
+	 
+	
+	}
 }
 
