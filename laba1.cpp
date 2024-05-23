@@ -5,17 +5,22 @@
 //Лаборатораня работа 5
 int main()
 {
-    int numbers[3][5]
+    const int rows = 3, columns = 5;
+    int numbers[rows][columns]
     {
-
-
         {-4,1, 2,-4,0},     
         { 4,2, 6,-4,5},    
         { 7,27,-4,14, 8}      
     };
-
-
-
+    cout << "e";
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            std::cout << numbers[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
 
 
 }
