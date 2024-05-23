@@ -31,9 +31,20 @@ int main()
         
         for (int j = 0; j < columns; j++)
         {
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns ; j++) {
+                    if (numbers[j] > numbers[j + 1]) {
+                        int b = numbers[i][j]; // создали дополнительную переменную
+                        numbers[i][j] = numbers[i][j + 1]; // меняем местами
+                        numbers[i][j + 1] = b; // значения элементов
+                    }
+                    //cout << numbers[i][j] << "\t";
+                }
+            }
             cout << numbers[i][j] << "\t";
         }
-        cout << std::endl;
+       // cout << std::endl;
        
     }
 
