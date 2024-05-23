@@ -6,6 +6,7 @@ using namespace std;
 //Лаборатораня работа 5
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     const int rows = 3, columns = 5;
     int numbers[rows][columns]
     {
