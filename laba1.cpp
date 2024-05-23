@@ -17,13 +17,25 @@ int main()
     cout << "Исходный массив :"<<endl;
     for (int i = 0; i < rows; i++)
     {
+
         for (int j = 0; j < columns; j++)
         {
-            std::cout << numbers[i][j] << "\t";
+            cout << numbers[i][j] << "\t";
         }
         cout << std::endl;
     }
-
+    cout << "Упорядоченный по возрастанию строк массив :" << endl;
+   // int indx=0;
+    for (int i = 0; i < rows; i++)
+    {
+        
+        for (int j = 0; j < columns; j++)
+        {
+            cout << numbers[i][j] << "\t";
+        }
+        cout << std::endl;
+       
+    }
 
 }
 
