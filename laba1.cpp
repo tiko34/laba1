@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+using namespace std;
 //Лаборатораня работа 5
 int main()
 {
@@ -12,14 +13,14 @@ int main()
         { 4,2, 6,-4,5},    
         { 7,27,-4,14, 8}      
     };
-    cout << "e";
+    cout << "Исходный массив :"<<endl;
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
         {
             std::cout << numbers[i][j] << "\t";
         }
-        std::cout << std::endl;
+        cout << std::endl;
     }
 
 
