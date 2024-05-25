@@ -50,7 +50,6 @@ int main()
 		summod += abs(numbers[i]);
 	}
 	cout << endl << "Сумма модулей элементов: " << summod << endl;
-
 	//Заменить все отрицательные элементы массива их квадратами 
 //и упорядочить элементы массива по возрастанию.
 //сортировка пузырьком
@@ -59,9 +58,7 @@ int main()
 		{
 			numbers[i] = numbers[i] * numbers[i];
 		}
-		//	cout << numbers[i] << " "; // выводим элементы массива
 	}
-
 	for (int i = 0; i < size(numbers); i++) {
 		for (int j = 0; j < size(numbers) - 1; j++) {
 			if (numbers[j] > numbers[j + 1]) {
