@@ -1,7 +1,4 @@
-﻿// laba1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 //Лаборатораня работа 5
 int main()
@@ -26,7 +23,7 @@ int main()
     }
     cout << "Упорядоченный по возрастанию строк массив :" << endl;
     int rv = 0;
-    for (int i = 0; i < rows; i++)
+   for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
         {
