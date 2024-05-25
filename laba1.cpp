@@ -1,7 +1,4 @@
-﻿
-
-#include <iostream>
-
+﻿#include <iostream>
 using namespace std;
 //Лабораторная работа 4
 int main()
