@@ -58,17 +58,18 @@ int main()
 		}
 		cout << endl;
 	}
-	cout << "Первый столбец, ,без отрицательных элементов:  " << endl;
-	int indexcolum = 0;
-	bool allNonNegative = true;
+	cout << "Первый столбец,без отрицательных элементов:  " << endl;
+	int indexcolum = -1;
+	
 	for (int j = 0; j < columns; j++) {
+		bool allNonNegative = false;
 		for (int i = 0; i < rows; i++) {
 			if (numbers[i][j] < 0) {
-				allNonNegative = false;
+				allNonNegative = true;
 				break;
 			}
 		}
-		if (allNonNegative) {
+		if (!allNonNegative) {
 			indexcolum = j;
 			break;
 		}
