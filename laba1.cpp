@@ -1,6 +1,4 @@
 ﻿#include <iostream>
-#include <map>
-
 using namespace std;
 //Лаборатораня работа 5
 int main()
@@ -25,7 +23,8 @@ int main()
 	}
 	// Упорядочиваем строки по возрастанию количества одинаковых элементов
 	for (int i = 0; i < rows - 1; ++i) {
-		for (int j = 0; j < rows - i - 1; ++j) {
+		for (int j = 0; j < rows - i - 1; ++j) 
+		{
 			int freq1[columns] = { 0 };
 			int freq2[columns] = { 0 };
 			int maxCount1 = 0, maxCount2 = 0;
@@ -60,7 +59,6 @@ int main()
 	}
 	cout << "Первый столбец,без отрицательных элементов:  " << endl;
 	int indexcolum = -1;
-	
 	for (int j = 0; j < columns; j++) {
 		bool allNonNegative = false;
 		for (int i = 0; i < rows; i++) {
@@ -74,7 +72,6 @@ int main()
 			break;
 		}
 	}
-
 	// Вывод результата
 	if (indexcolum != -1) {
 		cout << "Номер первого столбца, не содержащего ни одного отрицательного элемента: " << indexcolum << endl;
