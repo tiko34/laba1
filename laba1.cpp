@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <map>
+
 using namespace std;
 //Лаборатораня работа 5
 int main()
@@ -8,8 +10,8 @@ int main()
     int numbers[rows][columns]
     {
         {7,1, 2,7,0},     
-        { 4,4, 6,4,5},    
-        { 5,2,-4,14, 8}      
+        { 4,-4, 6,4,5},    
+        { 5,2,3,14, 8}      
     };
     cout << "Исходный массив :"<<endl;
     for (int i = 0; i < rows; i++)
@@ -21,61 +23,63 @@ int main()
         }
         cout << std::endl;
     }
-    //cout << "Упорядоченный по возрастанию строк массив :" << endl;
-     //Находим суммы элементов в каждой строке
-    double sum[rows];
-    for (int i = 0; i < rows; i++)
-    {
-        sum[i] = 0;
-        for (int j = 0; j < columns; j++)
-        {
-            sum[i] += fabs(numbers[i][j]);
-        }
-    }
-    //Находим первый столбец с отрицательным элементом
-    int first_neg = 0;
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-        {
-            if (numbers[i][j] < 0)
-            {
-                first_neg = j;
-                goto otmetka;
-            }
-        }
-    }
-otmetka:
-   
-    //Сортируем матрицу 
-    double k;
-    int a[rows];
-    for (int i = 0; i < rows; ++i)
-    {
-        /*if (sum[i] < sum[i + 1])
-        {*/
-            for (int j = 0; j < columns; ++j)
-            {
-                a[i] = numbers[i][j];
-                numbers[i][j] = numbers[i + 1][j];
-                numbers[i + 1][j] = a[i];
-                k = sum[i];
-                sum[i] = sum[i + 1];
-                sum[i + 1] = k;
-                
-            }
-       // }
-    }
-    //cout << std::endl;
-    //for (int i = 0; i < rows; i++)
-    //{
-    //    for (int j = 0; j < columns; j++)
-    //    {
-    //        cout << numbers[i][j] << "\t";
-    //    }
-    //    cout << std::endl;
-    //}
+    // Упорядочиваем строки по возрастанию количества одинаковых элементов
+    for (int i = 0; i < rows - 1; ++i) {
+        for (int j = 0; j < rows - i - 1; ++j) {
+            int freq1[columns] = { 0 };
+            int freq2[columns] = { 0 };
+            int maxCount1 = 0, maxCount2 = 0;
 
+            for (int k = 0; k < columns; ++k) {
+                int count1 = 0, count2 = 0;
+                for (int l = 0; l < columns; ++l) {
+                    if (numbers[j][k] == numbers[j][l]) count1++;
+                    if (numbers[j + 1][k] == numbers[j + 1][l]) count2++;
+                }
+                if (count1 > maxCount1) maxCount1 = count1;
+                if (count2 > maxCount2) maxCount2 = count2;
+            }
+            if (maxCount1 > maxCount2) {
+                for (int k = 0; k < columns; ++k) {
+                    int temp = numbers[j][k];
+                    numbers[j][k] = numbers[j + 1][k];
+                    numbers[j + 1][k] = temp;
+                }
+            }
+        }
+    }
+    // Вывод отсортированной матрицы
+    cout <<"Отсортированный двумерный массив по повторяющимся элементам в строках(по возрастанию):  " << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            cout << numbers[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    cout << "Первый столбец, не содержащего отрицательных элементов:  " << endl;
+    int colIndex = 0;
+    for (int j = 0; j < columns; ++j) {
+        bool allNonNegative = true;
+        for (int i = 0; i < rows; ++i) {
+            if (numbers[i][j] < 0) {
+                allNonNegative = false;
+                break;
+            }
+        }
+        if (allNonNegative) {
+           colIndex = j;
+            break;
+        }
+    }
+
+    if (colIndex > 0) {
+        cout << "Номер первого столбца, не содержащего ни одного отрицательного элемента: " << colIndex << endl;
+    }
+    else {
+       cout << "Нет столбцов, не содержащих отрицательных элементов." << endl;
+    }
 
 
 }
