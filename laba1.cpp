@@ -7,7 +7,7 @@
 
     // Вспомогательная функция для вычисления площади треугольника
     double area(const Point & a, const Point & b, const Point & c) {
-        return std::abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2.0;
+        return abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2.0;
     }
 
     // Вспомогательная функция для проверки, лежит ли точка внутри треугольника
@@ -64,6 +64,7 @@
     }
 
     int main() {
+        setlocale(LC_ALL, "Russian");
         std::vector<Point> points = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6}, {7,7}, {8,8}, {9,9} };
         std::vector<Point> triangle1, triangle2, triangle3;
 
