@@ -1,73 +1,54 @@
 ﻿#include <iostream>
 #include <vector>
 #include <algorithm>
-
-int main()
-{
-
-
-    using namespace std;
-
-    // Структура для представления точки на плоскости
     struct Point {
         int x, y;
     };
 
-    // Функция для проверки, лежит ли точка c слева от прямой, проходящей через точки a и b
-    bool isLeft(const Point & a, const Point & b, const Point & c) {
-        return ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)) > 0;
+    // Вспомогательная функция для вычисления площади треугольника
+    double area(const Point & a, const Point & b, const Point & c) {
+        return std::abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2.0;
     }
 
-    // Функция для проверки, лежит ли точка p внутри треугольника abc
-    bool isPointInsideTriangle(const Point & p, const Point & a, const Point & b, const Point & c) {
-        // Точка должна лежать с одной стороны от каждой стороны треугольника
-        return (isLeft(a, b, p) == isLeft(a, b, c)) &&
-            (isLeft(b, c, p) == isLeft(b, c, a)) &&
-            (isLeft(c, a, p) == isLeft(c, a, b));
+    // Вспомогательная функция для проверки, лежит ли точка внутри треугольника
+    bool isInside(const Point & p, const Point & a, const Point & b, const Point & c) {
+        double A = area(a, b, c);
+        double A1 = area(p, b, c);
+        double A2 = area(a, p, c);
+        double A3 = area(a, b, p);
+        return (A == A1 + A2 + A3);
     }
 
-    int main() {
-        // Ввод количества точек
-        int n;
-        cout << "Введите количество точек: ";
-        cin >> n;
+    // Основная функция для поиска трех треугольников
+    bool findNestedTriangles(const std::vector<Point> &points, std::vector<Point> &triangle1, std::vector<Point> &triangle2, std::vector<Point> &triangle3) {
+        int n = points.size();
+        if (n < 9) return false; // Недостаточно точек для трех треугольников
 
-        // Ввод координат точек
-        vector<Point> points(n);
-        cout << "Введите координаты точек:\n";
         for (int i = 0; i < n; ++i) {
-            cin >> points[i].x >> points[i].y;
-        }
-
-        // Поиск трех треугольников
-        for (int i = 0; i < n - 2; ++i) {
-            for (int j = i + 1; j < n - 1; ++j) {
+            for (int j = i + 1; j < n; ++j) {
                 for (int k = j + 1; k < n; ++k) {
-                    // Первый треугольник
-                    Point a = points[i], b = points[j], c = points[k];
-
-                    // Поиск второго треугольника внутри первого
                     for (int l = 0; l < n; ++l) {
-                        if (l != i && l != j && l != k) {
-                            Point d = points[l];
-                            if (isPointInsideTriangle(d, a, b, c)) {
-                                for (int m = l + 1; m < n; ++m) {
-                                    if (m != i && m != j && m != k) {
-                                        Point e = points[m];
-                                        if (isPointInsideTriangle(e, a, b, c) &&
-                                            isPointInsideTriangle(e, d, b, c)) {
-                                            for (int p = m + 1; p < n; ++p) {
-                                                if (p != i && p != j && p != k) {
-                                                    Point f = points[p];
-                                                    if (isPointInsideTriangle(f, a, b, c) &&
-                                                        isPointInsideTriangle(f, d, b, c) &&
-                                                        isPointInsideTriangle(f, d, e, c)) {
-                                                        // Найдены три треугольника
-                                                        cout << "Треугольник 1: (" << a.x << ", " << a.y << "), (" << b.x << ", " << b.y << "), (" << c.x << ", " << c.y << ")\n";
-                                                        cout << "Треугольник 2: (" << d.x << ", " << d.y << "), (" << b.x << ", " << b.y << "), (" << c.x << ", " << c.y << ")\n";
-                                                        cout << "Треугольник 3: (" << d.x << ", " << d.y << "), (" << e.x << ", " << e.y << "), (" << f.x << ", " << f.y << ")\n";
-                                                        return 0;
-                                                    }
+                        if (l == i || l == j || l == k) continue;
+                        for (int m = l + 1; m < n; ++m) {
+                            if (m == i || m == j || m == k) continue;
+                            for (int o = m + 1; o < n; ++o) {
+                                if (o == i || o == j || o == k) continue;
+                                if (isInside(points[l], points[i], points[j], points[k]) &&
+                                    isInside(points[m], points[i], points[j], points[k]) &&
+                                    isInside(points[o], points[i], points[j], points[k])) {
+                                    for (int p = 0; p < n; ++p) {
+                                        if (p == i || p == j || p == k || p == l || p == m || p == o) continue;
+                                        for (int q = p + 1; q < n; ++q) {
+                                            if (q == i || q == j || q == k || q == l || q == m || q == o) continue;
+                                            for (int r = q + 1; r < n; ++r) {
+                                                if (r == i || r == j || r == k || r == l || r == m || r == o) continue;
+                                                if (isInside(points[p], points[l], points[m], points[o]) &&
+                                                    isInside(points[q], points[l], points[m], points[o]) &&
+                                                    isInside(points[r], points[l], points[m], points[o])) {
+                                                    triangle1 = { points[i], points[j], points[k] };
+                                                    triangle2 = { points[l], points[m], points[o] };
+                                                    triangle3 = { points[p], points[q], points[r] };
+                                                    return true;
                                                 }
                                             }
                                         }
@@ -79,11 +60,27 @@ int main()
                 }
             }
         }
+        return false;
+    }
 
-        // Треугольники не найдены
-        cout << "Не найдено трех треугольников, удовлетворяющих условию.\n";
+    int main() {
+        std::vector<Point> points = { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6}, {7,7}, {8,8}, {9,9} };
+        std::vector<Point> triangle1, triangle2, triangle3;
+
+        if (findNestedTriangles(points, triangle1, triangle2, triangle3)) {
+            std::cout << "Первый треугольник: ";
+            for (const auto& p : triangle1) std::cout << "(" << p.x << "," << p.y << ") ";
+            std::cout << "\nВторой треугольник: ";
+            for (const auto& p : triangle2) std::cout << "(" << p.x << "," << p.y << ") ";
+            std::cout << "\nТретий треугольник: ";
+            for (const auto& p : triangle3) std::cout << "(" << p.x << "," << p.y << ") ";
+            std::cout << "\n";
+        }
+        else {
+            std::cout << "Не найдены треугольники.\n";
+        }
 
         return 0;
     }
-}
+
 
