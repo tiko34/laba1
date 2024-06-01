@@ -1,6 +1,7 @@
 ﻿#include <algorithm>
 #include <iostream>
 #include <vector>
+//Лабораторная работа 6
 struct Point {
 	int x, y;
 };
