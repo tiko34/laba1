@@ -7,8 +7,8 @@ int main()
 	const int rows = 3, columns = 5;
 	int numbers[rows][columns]
 	{
-		{7,1, 2,7,0},
-		{ -4,-4, 6,4,5},
+		{7,1, 7,7,0},
+		{ -4,-4, -6,-4,-5},
 		{ 5,2,3,14, 8}
 	};
 	cout << "Исходный массив :" << endl;
@@ -57,7 +57,7 @@ int main()
 		}
 		cout << endl;
 	}
-	cout << "Первый столбец,без отрицательных элементов:  " << endl;
+//	cout << "Первый столбец,без отрицательных элементов:  " << endl;
 	int indexcolum = -1;
 	for (int j = 0; j < columns; j++) {
 		bool allNonNegative = false;
